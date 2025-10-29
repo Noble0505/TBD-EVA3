@@ -1,0 +1,136 @@
+MySQL Shell 8.0.43
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 13
+Server version: 8.0.43 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > create database dbd3;
+Query OK, 1 row affected (0.0374 sec)
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbd3               |
+| information_schema |
+| mysql              |
+| ordenes            |
+| ordenes2           |
+| performance_schema |
+| prueba_tbd         |
+| sakila             |
+| superstore         |
+| sys                |
+| tbd1               |
+| tbd2               |
+| world              |
++--------------------+
+13 rows in set (0.0024 sec)
+ MySQL  localhost:3306 ssl  SQL > drop database dbd3;
+Query OK, 0 rows affected (0.0388 sec)
+ MySQL  localhost:3306 ssl  SQL > create database tbd3;
+Query OK, 1 row affected (0.0221 sec)
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| ordenes            |
+| ordenes2           |
+| performance_schema |
+| prueba_tbd         |
+| sakila             |
+| superstore         |
+| sys                |
+| tbd1               |
+| tbd2               |
+| tbd3               |
+| world              |
++--------------------+
+13 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  SQL > use tbd3;
+Default schema set to `tbd3`.
+Fetching global names, object names from `tbd3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mensaje();
++-------------+
+| mensaje()   |
++-------------+
+| Hola mundo! |
++-------------+
+1 row in set (0.0165 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mostrarmensaje();
+ERROR: 1318 (42000): Incorrect number of arguments for FUNCTION tbd3.mostrarMensaje; expected 1, got 0
+ MySQL  localhost:3306 ssl  tbd3  SQL > select mostrarMensaje("Raul");
++------------------------+
+| mostrarMensaje("Raul") |
++------------------------+
+| Hola Raul              |
++------------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumar(5,3);
++------------+
+| sumar(5,3) |
++------------+
+|          8 |
++------------+
+1 row in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > create table datos(
+                                     -> valor1 int,
+                                     -> valor2 int);
+Query OK, 0 rows affected (0.0447 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into datos values
+                                     -> (5,4),(7,2),(3,7);
+Query OK, 3 rows affected (0.0282 sec)
+
+Records: 3  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from datos;
++--------+--------+
+| valor1 | valor2 |
++--------+--------+
+|      5 |      4 |
+|      7 |      2 |
+|      3 |      7 |
++--------+--------+
+3 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select valor1, valor2, sumar(valor1,valor2)
+                                     -> from datos;
++--------+--------+----------------------+
+| valor1 | valor2 | sumar(valor1,valor2) |
++--------+--------+----------------------+
+|      5 |      4 |                    9 |
+|      7 |      2 |                    9 |
+|      3 |      7 |                   10 |
++--------+--------+----------------------+
+3 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select valor1, valor2, sumar2(valor1,valor2) from datos;
++--------+--------+-----------------------+
+| valor1 | valor2 | sumar2(valor1,valor2) |
++--------+--------+-----------------------+
+|      5 |      4 |                     9 |
+|      7 |      2 |                     9 |
+|      3 |      7 |                    10 |
++--------+--------+-----------------------+
+3 rows in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select valor1, valor2, comparar(valor1,valor2) from datos;
+ERROR: 1406 (22001): Data too long for column 'resu' at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > select valor1, valor2, comparar(valor1,valor2) from datos;
+ERROR: 1265 (01000): Data truncated for column 'comparar(valor1,valor2)' at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > select comparar (3,5),
+                                     -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > select comparar (3,5);
+ERROR: 1265 (01000): Data truncated for column 'comparar (3,5)' at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > select comparar (3,5);
+ERROR: 1265 (01000): Data truncated for column 'comparar (3,5)' at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > select comparar (3,5);
+ERROR: 1265 (01000): Data truncated for column 'comparar (3,5)' at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL >
