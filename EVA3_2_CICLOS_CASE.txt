@@ -1,0 +1,119 @@
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 13
+Server version: 8.0.43 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tbd3;
+Default schema set to `tbd3`.
+Fetching global names, object names from `tbd3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd3  SQL > select dia_semana (5);
++----------------+
+| dia_semana (5) |
++----------------+
+| Jueves         |
++----------------+
+1 row in set (0.0161 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select dia_semana (10);
++-----------------+
+| dia_semana (10) |
++-----------------+
+| NO VALIDO       |
++-----------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select calificacion(92);
+ERROR: 1305 (42000): FUNCTION tbd3.calificacion does not exist
+ MySQL  localhost:3306 ssl  tbd3  SQL > select calificacion(92);
++------------------+
+| calificacion(92) |
++------------------+
+| A                |
++------------------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select calificacion(52);
++------------------+
+| calificacion(52) |
++------------------+
+| F                |
++------------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select calificacion(62);
++------------------+
+| calificacion(62) |
++------------------+
+| D                |
++------------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select calificacion(72);
++------------------+
+| calificacion(72) |
++------------------+
+| C                |
++------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select calificacion(82);
++------------------+
+| calificacion(82) |
++------------------+
+| B                |
++------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria(10);
+ERROR: 1305 (42000): FUNCTION tbd3.sumatoria does not exist
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_loop(10);
+ERROR: 1305 (42000): FUNCTION tbd3.sumatoria_loop does not exist
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_loop(10);
++--------------------+
+| sumatoria_loop(10) |
++--------------------+
+|                 55 |
++--------------------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_loop(3);
++-------------------+
+| sumatoria_loop(3) |
++-------------------+
+|                 6 |
++-------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_while(5);
++--------------------+
+| sumatoria_while(5) |
++--------------------+
+|                 15 |
++--------------------+
+1 row in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_while(7);
++--------------------+
+| sumatoria_while(7) |
++--------------------+
+|                 28 |
++--------------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_repeat(4);
++---------------------+
+| sumatoria_repeat(4) |
++---------------------+
+|                  10 |
++---------------------+
+1 row in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_repeat(9);
++---------------------+
+| sumatoria_repeat(9) |
++---------------------+
+|                  45 |
++---------------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select sumatoria_repeat(12);
++----------------------+
+| sumatoria_repeat(12) |
++----------------------+
+|                   78 |
++----------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL >
