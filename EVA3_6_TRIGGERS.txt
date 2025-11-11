@@ -1,0 +1,96 @@
+Query OK, 0 rows affected (0.0348 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > desc personas;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| rfc        | varchar(10) | NO   | PRI | NULL    |       |
+| nombre     | varchar(50) | NO   |     | NULL    |       |
+| ap_paterno | varchar(50) | NO   |     | NULL    |       |
+| ap_materno | varchar(50) | YES  |     | NULL    |       |
+| fecha_nac  | date        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.0177 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from personas;
++------------+--------+------------+------------+------------+
+| rfc        | nombre | ap_paterno | ap_materno | fecha_nac  |
++------------+--------+------------+------------+------------+
+| OrMR050518 | Raul   | Ornelas    | Muñoz      | 2005-05-18 |
++------------+--------+------------+------------+------------+
+1 row in set (0.0345 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into perosnas
+                                     -> value("SDF354","JUAN","JIMENES","2005-04-12");
+ERROR: 1146 (42S02): Table 'tbd3.perosnas' doesn't exist
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into personas value("SDF354","JUAN","JIMENES","2005-04-12");
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into perosnas value("SDF3546543","JUAN","JIMENES","2005-04-12");
+ERROR: 1146 (42S02): Table 'tbd3.perosnas' doesn't exist
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into personas value("SDF3546543","JUAN","JIMENES","2005-04-12");
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > INSERT INTO personas VALUES ("SDF3546543", "JUAN", "JIMENES", "GARCIA", "2005-04-12");
+Query OK, 1 row affected (0.0294 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select @mensaje;
++----------------------------+
+| @mensaje                   |
++----------------------------+
+| Persona agregada con exito |
++----------------------------+
+1 row in set (0.0142 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > create table bitacora(
+                                     -> descripcion varchar(50));
+Query OK, 0 rows affected (0.0614 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from personas;
++------------+--------+------------+------------+------------+
+| rfc        | nombre | ap_paterno | ap_materno | fecha_nac  |
++------------+--------+------------+------------+------------+
+| OrMR050518 | Raul   | Ornelas    | Muñoz      | 2005-05-18 |
+| SDF3546543 | JUAN   | JIMENES    | GARCIA     | 2005-04-12 |
++------------+--------+------------+------------+------------+
+2 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > delecte from personas
+                                     -> where rfc = "SDF3546543";
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delecte from personas
+where rfc = "SDF3546543"' at line 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > delete from personas where rfc = "SDF3546543";
+Query OK, 1 row affected (0.0251 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from bitacora;
++--------------------+
+| descripcion        |
++--------------------+
+| Borrado de persona |
++--------------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from bitacora;
++--------------------+
+| descripcion        |
++--------------------+
+| Borrado de persona |
++--------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > INSERT INTO personas VALUES ("SDF3546543", "JUAN", "JIMENES", "GARCIA", "2005-04-12");
+Query OK, 1 row affected (0.0167 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > delete from personas where rfc = "SDF3546543";
+Query OK, 1 row affected (0.0207 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from bitacora;
++---------------------+
+| descripcion         |
++---------------------+
+| Borrado de persona  |
+| Borrado: SDF3546543 |
++---------------------+
+2 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into personas(nombre, ap_paterno, ap_materno, fecha_nac)
+                                     -> values ("Emiliano","Cano","Maro","2005-09-2005");
+ERROR: 1292 (22007): Incorrect date value: '2005-09-2005' for column 'fecha_nac' at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into personas(nombre, ap_paterno, ap_materno, fecha_nac) values ("Emiliano","Cano","Maro","2005-09-2005");
+ERROR: 1292 (22007): Incorrect date value: '2005-09-2005' for column 'fecha_nac' at row 1
+ MySQL  localhost:3306 ssl  tbd3  SQL > insert into personas(nombre, ap_paterno, ap_materno, fecha_nac) values ("Emiliano","Cano","Maro","2005-09-25");
+Query OK, 1 row affected (0.0240 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL > select * from personas;
++------------+----------+------------+------------+------------+
+| rfc        | nombre   | ap_paterno | ap_materno | fecha_nac  |
++------------+----------+------------+------------+------------+
+| CaME050925 | Emiliano | Cano       | Maro       | 2005-09-25 |
+| OrMR050518 | Raul     | Ornelas    | Muñoz      | 2005-05-18 |
++------------+----------+------------+------------+------------+
+2 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tbd3  SQL >
